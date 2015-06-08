@@ -13,7 +13,6 @@ class Chisel
 
   def call
   @input.render
-
   end
 end
 
