@@ -9,7 +9,6 @@ class RendererTest < Minitest::Test
   def test_it_chunks
     input = "A\n\nB"
     render = Renderer.new(input)
-
     assert_equal ["A", "B"], render.chunks
   end
 

@@ -19,6 +19,11 @@ class Renderer
     end
   end
 
+  #build a machine that iterates through the result of my iterator
+  #give that machine the ability to convert *txt* into <em>txt</em>
+  #give it the ability to convert **txt** into <strong>txt</strong>
+
+
   def header?(chunk)
     chunk[0] == "#"
   end
