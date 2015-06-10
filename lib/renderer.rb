@@ -1,6 +1,8 @@
 require_relative 'chunk_maker'
 require_relative 'paragraph_machine'
 require_relative 'header_machine'
+require_relative 'emphasizer'
+require_relative 'emboldener'
 
 class Renderer
   attr_reader :chunks
@@ -10,19 +12,20 @@ class Renderer
   end
 
   def iterator
-    result = @chunks.map do |chunk|
+    @chunks.map do |chunk|
       if header?(chunk)
-        HeaderMachine.converter(chunk)
+        HeaderMachine.convert(chunk)
       else
         ParagraphMachine.convert(chunk)
       end
     end
   end
 
-  #build a machine that iterates through the result of my iterator
-  #give that machine the ability to convert *txt* into <em>txt</em>
-  #give it the ability to convert **txt** into <strong>txt</strong>
-
+  def formatter
+    results = iterator.join
+    new_results = Emboldener.convert(results)
+    Emphasizer.convert(new_results)
+  end
 
   def header?(chunk)
     chunk[0] == "#"
@@ -30,6 +33,6 @@ class Renderer
 
 end
 
-# input = "You just have to try the cheesecake"
-# renderer = Renderer.new(input)
-# p renderer.iterator
+input = "You just have to **try** the *cheesecake*"
+renderer = Renderer.new(input)
+p renderer.formatter

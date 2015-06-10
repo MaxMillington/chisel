@@ -22,10 +22,39 @@ class EmboldenerTest < Minitest::Test
     assert_equal "Open the <strong>POD</strong> bay doors please HAL.", output
   end
 
-  def test_it_will_not_delete_a_single_star
-    input = "6 * 6 = **36**"
+  def test_it_will_embolden_many_words
+    input = "**bold** and **really** **bold**"
     output = Emboldener.convert(input)
-    assert_equal "6 * 6 = <strong>36</strong>", output
+    assert_equal "<strong>bold</strong> and <strong>really</strong> <strong>bold</strong>", output
   end
 
+  def test_it_can_handle_spaces
+    input = "**super bold**"
+    output = Emboldener.convert(input)
+    assert_equal "<strong>super bold</strong>", output
+  end
+
+  def test_it_can_handle_many_spaces
+    input = "**extremely very much bold**"
+    output = Emboldener.convert(input)
+    assert_equal "<strong>extremely very much bold</strong>", output
+  end
+
+  def test_it_can_handle_no_bold
+    input = "extremely very much bold"
+    output = Emboldener.convert(input)
+    assert_equal "extremely very much bold", output
+  end
+
+  def test_worst_case_scenario
+    input = "*THIS* is some **extremely very much bold** text."
+    output = Emboldener.convert(input)
+    assert_equal "*THIS* is some <strong>extremely very much bold</strong> text.", output
+  end
+
+  def test_even_worse_case_scenario
+    input = "*THIS* is some **extremely *very* much bold** text."
+    output = Emboldener.convert(input)
+    assert_equal "*THIS* is some <strong>extremely *very* much bold</strong> text.", output
+  end
 end
