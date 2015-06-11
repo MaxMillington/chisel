@@ -12,13 +12,13 @@ class Renderer
     @chunks = ChunkMaker.new.chunk_it(input)
   end
 
-  def render
-    formatter
-  end
-
   def iterator
     @chunks.map do |chunk|
-      renderer_for(chunk).convert(chunk)
+      if header?(chunk)
+        HeaderMachine.convert(chunk)
+      else
+        ParagraphMachine.convert(chunk)
+      end
     end
   end
 
@@ -26,10 +26,14 @@ class Renderer
     results = iterator.join
     new_results = Emboldener.convert(results)
     Emphasizer.convert(new_results)
-
   end
 
-  def renderer_for(chunk)
-    @sub_renderers.find { |renderer| renderer.handles?(chunk) }
+  def header?(chunk)
+    chunk[0] == "#"
   end
+
 end
+
+input = "You just have to **try** the *cheesecake*"
+renderer = Renderer.new(input)
+p renderer.formatter
