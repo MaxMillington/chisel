@@ -8,15 +8,16 @@ require 'paragraph_machine'
 
 class Chisel
   def initialize(input)
-    @input = input
-    # @output = output
-    @renderer = Renderer.new
+    @renderer = Renderer.new(input, [
+      HeaderMachine.new,
+      ListMachine.new,
+      ParagraphMachine.new
+    ])
   end
 
-  def call
-    @output.write(@renderer.render)
+  def result
+    @renderer.render
   end
-
 end
 
 if __FILE__ == $0
