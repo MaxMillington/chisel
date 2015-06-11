@@ -13,10 +13,6 @@ class Renderer
     @sub_renderers = sub_renderers
   end
 
-  def render
-    formatter
-  end
-
   def iterator
     @chunks.map do |chunk|
       renderer_for(chunk).convert(chunk)
@@ -27,7 +23,7 @@ class Renderer
     results = iterator.join
     listed_results = ListMachine.convert(results)
     emboldeneed_results = Emboldener.convert(listed_results)
-    Emphasizer.convert(emboldeneed_results)
+    emphasized_results = Emphasizer.convert(emboldeneed_results)
 
   end
 
@@ -35,6 +31,17 @@ class Renderer
     @sub_renderers.find { |renderer| renderer.handles?(chunk) }
   end
 end
+
+
+
+
+
+
+
+
+
+
+
 
 # renderer = Renderer.new('# My Life in Desserts
 #

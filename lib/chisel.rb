@@ -1,5 +1,3 @@
-#read input from input.md, apply the renderer.rb file to it, and send it to output_file.html.
-
 require_relative 'renderer'
 require_relative 'chunk_maker'
 require_relative 'header_machine'
@@ -16,22 +14,31 @@ class Chisel
   end
 
   def result
-    @renderer.render
+    @renderer.formatter
   end
 end
 
-# if __FILE__ == $0
+if __FILE__ == $0
 #   $LOAD_PATH.unshift(File.expand_path("..", __FILE__))
 
   input = File.read(ARGV[0])
   chisel = Chisel.new(input).result
-  output = File.write(ARGV[1], chisel)
+  File.write(ARGV[1], chisel)
 
-  # output.write(chisel)
-  # output.close
-# end
+end
 
-#
+
+
+
+
+
+
+
+
+
+
+
+
 
 # chisler = Chisel.new('# My Life in Desserts
 #

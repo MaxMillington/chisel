@@ -1,5 +1,3 @@
-require 'pry'
-
 class ListMachine
   def self.convert(input)
     new.convert(input)

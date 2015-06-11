@@ -18,16 +18,6 @@ class RendererTest < Minitest::Test
     assert_equal [input], renderer.chunks
   end
 
-  # def test_it_returns_true_when_the_input_is_a_header
-  #   input = "# My Life in Desserts"
-  #   assert_equal true, Renderer.new(input, [HeaderMachine.new, ListMachine.new, ParagraphMachine.new]).header?(input)
-  # end
-  #
-  # def test_it_returns_false_when_input_is_not_a_header
-  #   input = "My Life in Desserts"
-  #   assert_equal false, Renderer.new(input, [HeaderMachine.new, ListMachine.new, ParagraphMachine.new]).header?(input)
-  # end
-
   def test_it_runs_header_machine_on_headers
     input = "# My Life in Desserts"
     renderer = Renderer.new(input, [HeaderMachine.new, ListMachine.new, ParagraphMachine.new])
@@ -51,6 +41,5 @@ class RendererTest < Minitest::Test
     renderer = Renderer.new(input, [HeaderMachine.new, ListMachine.new, ParagraphMachine.new])
     assert_equal "<p>\n<em>THIS</em> should <strong>work</strong>\n</p>", renderer.formatter
   end
-
 
 end
