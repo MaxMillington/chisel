@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+
 require_relative '../lib/renderer'
 
 
@@ -45,16 +46,10 @@ class RendererTest < Minitest::Test
     assert_equal ["<h1> My Life in Desserts </h1>", "<h2> Chapter 1: The Beginning </h2>", "<p>\nYou just have to try the cheesecake, he said. Ever since it appeared in Food & Wine this place has been packed every night.\n</p>"], renderer.iterator
   end
 
-  def test_it_can_convert_bold_and_italic
+  def test_it_can_conver_bold_and_italic
     input = "*THIS* should **work**"
     renderer = Renderer.new(input)
     assert_equal "<p>\n<em>THIS</em> should <strong>work</strong>\n</p>", renderer.formatter
-  end
-
-  def test_it_can_handle_bold_italics_and_lists
-    input = "*THIS* should **work:** \n*please\n*pretty please"
-    renderer = Renderer.new(input)
-    assert_equal "<p>\n<em>THIS</em> should <strong>work:</strong>\n</p> \n<ul><li>please</li> \n<li>pretty please</li></ul>", renderer.formatter
   end
 
 

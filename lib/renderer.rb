@@ -24,9 +24,8 @@ class Renderer
 
   def formatter
     results = iterator.join
-    listed_results = ListMachine.convert(results)
-    emboldened_results = Emboldener.convert(listed_results)
-    emphasized_results = Emphasizer.convert(emboldened_results)
+    new_results = Emboldener.convert(results)
+    Emphasizer.convert(new_results)
   end
 
   def header?(chunk)
@@ -35,8 +34,6 @@ class Renderer
 
 end
 
-input = "You just have to **try** the *cheesecake*
-1. please
-2. please"
+input = "You just have to **try** the *cheesecake*"
 renderer = Renderer.new(input)
 p renderer.formatter
