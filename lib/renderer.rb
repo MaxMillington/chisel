@@ -8,9 +8,8 @@ require_relative 'list_machine'
 class Renderer
   attr_reader :chunks
 
-  def initialize(input, sub_renderers)
+  def initialize(input)
     @chunks = ChunkMaker.new.chunk_it(input)
-    @sub_renderers = sub_renderers
   end
 
   def render
