@@ -23,30 +23,30 @@ end
 # if __FILE__ == $0
 #   $LOAD_PATH.unshift(File.expand_path("..", __FILE__))
 
-  input = File.open(ARGV[0], "r")
-  output = File.open(ARGV[1], "w")
+  input = File.read(ARGV[0])
+  chisel = Chisel.new(input).result
+  output = File.write(ARGV[1], chisel)
 
-  chisel = Chisel.new(input)
-  output.write(chisel)
-  output.close
+  # output.write(chisel)
+  # output.close
 # end
 
+#
 
-
-chisler = Chisel.new('# My Life in Desserts
-
-## Chapter 1: The Beginning
-
-    "You just *have* to try the cheesecake," he said. "Ever since it appeared in
-**Food & Wine** this place has been packed every night."
-
-* Things are so great
-* The tests are passing
-
-These are my favorite movies:
-
-1. Vertigo
-2. 2001
-3. The Third Man')
-
-chisler
+# chisler = Chisel.new('# My Life in Desserts
+#
+# ## Chapter 1: The Beginning
+#
+#     "You just *have* to try the cheesecake," he said. "Ever since it appeared in
+# **Food & Wine** this place has been packed every night."
+#
+# * Things are so great
+# * The tests are passing
+#
+# These are my favorite movies:
+#
+# 1. Vertigo
+# 2. 2001
+# 3. The Third Man')
+#
+# p chisler
