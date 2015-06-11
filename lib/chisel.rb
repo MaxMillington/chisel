@@ -19,15 +19,16 @@ class Chisel
     @renderer.render
   end
 end
-#
+
 # if __FILE__ == $0
 #   $LOAD_PATH.unshift(File.expand_path("..", __FILE__))
-#
-#   input = File.read(ARGV[0])
-#   output = File.open(ARGV[1], "w")
-#
-#   chisel = Chisel.new(input)
-#   output.write(chisel.result)
+
+  input = File.open(ARGV[0], "r")
+  output = File.open(ARGV[1], "w")
+
+  chisel = Chisel.new(input)
+  output.write(chisel)
+  output.close
 # end
 
 
