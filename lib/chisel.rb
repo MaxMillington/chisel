@@ -19,13 +19,15 @@ class Chisel
 end
 
 if __FILE__ == $0
-#   $LOAD_PATH.unshift(File.expand_path("..", __FILE__))
 
   input = File.read(ARGV[0])
   chisel = Chisel.new(input).result
   File.write(ARGV[1], chisel)
 
 end
+
+
+
 
 
 
