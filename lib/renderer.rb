@@ -25,8 +25,9 @@ class Renderer
 
   def formatter
     results = iterator.join
-    new_results = Emboldener.convert(results)
-    Emphasizer.convert(new_results)
+    listed_results = ListMachine.convert(results)
+    emboldeneed_results = Emboldener.convert(listed_results)
+    Emphasizer.convert(emboldeneed_results)
 
   end
 
@@ -34,3 +35,21 @@ class Renderer
     @sub_renderers.find { |renderer| renderer.handles?(chunk) }
   end
 end
+
+renderer = Renderer.new('# My Life in Desserts
+
+## Chapter 1: The Beginning
+
+    "You just *have* to try the cheesecake," he said. "Ever since it appeared in
+**Food & Wine** this place has been packed every night."
+
+* Things are so great
+* The tests are passing
+
+These are my favorite movies:
+
+1. Vertigo
+2. 2001
+3. The Third Man' ,[HeaderMachine.new, ListMachine.new, ParagraphMachine.new])
+
+p renderer.formatter

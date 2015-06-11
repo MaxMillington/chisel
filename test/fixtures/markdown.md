@@ -8,9 +8,9 @@
 * Things are so great
 * The tests are passing
 
-These are my favorite programming languages:
+These are my favorite movies:
 
-1. Prolog
-2. COBOL
-3. FORTRAN
-4. [BrainFuck](http://www.muppetlabs.com/~breadbox/bf/)
+1. Vertigo
+2. 2001
+3. The Third Man
+4. [Apocalypse Now](http://www.imdb.com/title/tt0078788/)
