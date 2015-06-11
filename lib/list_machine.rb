@@ -13,6 +13,10 @@ class ListMachine
     render_lists(groups_of_lists).join("\n")
   end
 
+  def handles?(chunk)
+    is_a_list_item?(chunk)
+  end
+
   private
 
   def render_lists(groups_of_lists)
